@@ -1,11 +1,5 @@
 <?php
-function validaEmail($email){
-	if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		return 1; // e-mail válido
-	}else {
-		return 0; // e-mail inválido
-	}
-}
+
 
 function hash256($string){
 	$res = hash('sha256', $string); // devolve 64 caracteres
@@ -32,4 +26,6 @@ function antiInjection($param){
 	}
 	}
 }
+
+
 ?>

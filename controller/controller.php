@@ -3,9 +3,26 @@ session_start();  // Starting Session
 
 if (isset($_REQUEST["new"])){
     require_once"../model/ferramentas.php";
+    foreach ($_REQUEST as $chave => $valor) {
+        if (!antiInjection($valor)) {
+            
+            session_destroy();
+            ?>
+
+          <form action="../index.php" name="form" id="myForm" method="POST">
+                <input type="hidden" name="msg" value="OP02"> 
+                </form> 
+                <script>
+                document.getElementById('myForm').submit();//envio automático submit()
+                </script> 
+                <?php  
+                exit;
+        }
+    }
     $senhaHASH = hash256($_REQUEST['senha']);
     require_once"../model/manager.php"; //arquivo específico para comunicação com o BD
     $dados = array();
+  
    $dados["nome"] =  $_REQUEST["nome"] ;
    $dados["sobrenome"] = $_REQUEST["sobrenome"] ;
    $dados["email"] =  $_REQUEST["email"]  ;
@@ -46,6 +63,22 @@ if (isset($_REQUEST["new"])){
 
             if (isset($_REQUEST["old"])){
                 require_once"../model/ferramentas.php";
+                foreach ($_REQUEST as $chave => $valor) {
+                    if (!antiInjection($valor)) {
+                        
+                        session_destroy();
+                        ?>
+            
+                      <form action="../index.php?login=1" name="form" id="myForm" method="POST">
+                            <input type="hidden" name="msg" value="OP02"> 
+                            </form> 
+                            <script>
+                            document.getElementById('myForm').submit();//envio automático submit()
+                            </script> 
+                            <?php  
+                            exit;
+                    }
+                }
                 $senhaHASH = hash256($_REQUEST['senha']);
                 require_once"../model/manager.php"; //arquivo específico para comunicação com o BD
                 $dados = array();
