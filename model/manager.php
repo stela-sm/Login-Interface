@@ -37,16 +37,17 @@ function userNew($dados){ //função pra criar adm
 
 function loginUser($dados){
     require "conexao.php";
-    $sql = "SELECT * FROM usuarios WHERE email = {$dados["email"]}  AND senha = {$dados["senha"]} ";
+    $sql = "SELECT * FROM usuarios WHERE email = '{$dados["email"]}'  AND senha = '{$dados["senha"]}' ";
     $result = $conn -> query($sql);
-    if($result != 0){
+    if($result != false){
         $dados=array();
         $row=$result->fetch_assoc();
             $dados["id"] = $row["ID"];
             $dados["nome"] = $row["nome"];
+            $dados["sobrenome"] = $row["sobrenome"];
             $dados["email"] = $row["email"];
             $dados["senha"] = $row["senha"];
-            $dados["telefone"] = $row["celular"];      
+            $dados["telefone"] = $row["telefone"];      
             $dados["estado"] = $row["estado"];
       
         
@@ -56,8 +57,17 @@ function loginUser($dados){
     }else{
         $dados["result"]=0;
         $conn->close();
-        return $dados;
+        return $sql;
     }
 }
+
+function excluirUser($email){
+    require "conexao.php";
+    $sql = "DELETE FROM usuarios WHERE email = '{$email}'";
+    $result = $conn -> query($sql);
+    
+    }
+    
+
 
 ?>

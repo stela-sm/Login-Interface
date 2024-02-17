@@ -10,9 +10,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
-<body>
+<body class="fadein">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.fadein { animation: fadeIn 2s; }
         .main-row{
     width: 100vw;
     height: 100vh;
@@ -47,7 +52,7 @@ font-family: "Raleway", sans-serif;
     border-bottom: 1px white solid;
    background-color: transparent;
    color: white;
-   margin-bottom: 0.9rem;
+   margin-bottom: 1.2rem;
    width: 80%;
 }
 
@@ -94,7 +99,7 @@ option{
     color: white;
     width: 80%;
     border: 1px solid white;
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: 600;
     transition: 0.2s;
     text-transform: uppercase;
@@ -109,7 +114,7 @@ option{
     color: rgba(118,118,245,1);
     width: 80%;    
     border: 1px solid white;
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: 600;
     transition: 0.2s;
 }

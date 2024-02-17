@@ -15,12 +15,12 @@ if (isset($_REQUEST["new"])){
     $dados=userNew($dados);
     if($dados["result"]==1){//tudo certo!
 
-                $_SESSION["NOME"] = $dados["nome"];
-                $_SESSION["SOBRENOME"] = $dados["sobrenome"];
-                $_SESSION["EMAIL"] = $dados["email"];
-                $_SESSION["ESTADO"] = $dados["estado"]; 
-                $_SESSION["SENHA"] = $_REQUEST["senha"]; 
-                $_SESSION["TELEFONE"] = $dados["telefone"];
+                $_SESSION["nome"] = $dados["nome"];
+                $_SESSION["sobrenome"] = $dados["sobrenome"];
+                $_SESSION["email"] = $dados["email"];
+                $_SESSION["estado"] = $dados["estado"]; 
+                $_SESSION["senha"] = $_REQUEST["senha"]; 
+                $_SESSION["telefone"] = $dados["telefone"];
         ?>
 
           <form action="../view/perfil.php" name="form" id="myForm" method="POST">
@@ -50,16 +50,16 @@ if (isset($_REQUEST["new"])){
                 require_once"../model/manager.php"; //arquivo específico para comunicação com o BD
                 $dados = array();
                $dados["email"] =  $_REQUEST["email"]  ;
-               $dados["senha"] =  $senhaHASH   ; 
-                $dados=loginUser($dados);
-                if($dados["result"]==1){//tudo certo!
+               $dados["senha"] =  $senhaHASH ; 
+                $resp=loginUser($dados);
+                if($resp["result"]==1){//tudo certo!
             
-                            $_SESSION["NOME"] = $dados["nome"];
-                            $_SESSION["SOBRENOME"] = $dados["sobrenome"];
-                            $_SESSION["EMAIL"] = $dados["email"];
-                            $_SESSION["ESTADO"] = $dados["estado"]; 
-                            $_SESSION["SENHA"] = $_REQUEST["senha"]; 
-                            $_SESSION["TELEFONE"] = $dados["telefone"];
+                            $_SESSION["nome"] = $resp["nome"];
+                            $_SESSION["sobrenome"] = $resp["sobrenome"];
+                            $_SESSION["email"] = $resp["email"];
+                            $_SESSION["estado"] = $resp["estado"]; 
+                            $_SESSION["senha"] = $_REQUEST["senha"]; 
+                            $_SESSION["telefone"] = $resp["telefone"];
                     ?>
             
                       <form action="../view/perfil.php" name="form" id="myForm" method="POST">
@@ -74,7 +74,7 @@ if (isset($_REQUEST["new"])){
                                 session_destroy();
                                 ?>
                             <form action="../index.php?login=sim" name="form" id="myForm" method="POST">
-                            <input type="hidden" name="msg" value="FR06">  
+                            <input type="hidden" name="msg" value="FR02">  
                             </form> 
                             <script>
                             document.getElementById('myForm').submit();//envio automático submit()
@@ -85,6 +85,21 @@ if (isset($_REQUEST["new"])){
 
 
 
+                        if (isset($_REQUEST["excluir"])){
+                            require_once"../model/manager.php"; 
+                            $dados=excluirUser($_SESSION["email"]);
+                                       
+                                ?>
+                        
+                                  <form action="../index.php" name="form" id="myForm" method="POST">
+                                  <input type="hidden" name="msg" value="OP51">  
+                                        </form> 
+                                        <script>
+                                        document.getElementById('myForm').submit();//envio automático submit()
+                                        </script> 
+                                        <?php  
+                                        }
+                                    
 
 
 
