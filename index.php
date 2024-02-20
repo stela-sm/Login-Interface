@@ -151,8 +151,8 @@ option{
             <input class="input-padrao" type="text" name="nome" placeholder="Seu nome..." required id=""><br>
             <input class="input-padrao" type="text" name="sobrenome" placeholder="Seu sobrenome..." required id=""><br>
             <input class="input-padrao" type="text" name="telefone" placeholder="Seu telefone..." required id=""><br>
-            <input class="input-padrao" type="text" autocomplete="none" name="email" placeholder="Seu email..." required id=""><br>
-            <input class="input-padrao" type="text" name="senha" placeholder="Sua senha..." required id=""><br>
+            <input class="input-padrao" type="email" autocomplete="none" name="email" placeholder="Seu email..." required id=""><br>
+            <input class="input-padrao" type="password" name="senha" placeholder="Sua senha..." required id=""><br>
             <select  class="input-padrao" name="estado" id="">
                 <option value="" selected disabled>Seu Estado...</option>
                 <option value="AC">Acre</option>
